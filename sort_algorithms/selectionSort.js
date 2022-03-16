@@ -1,3 +1,4 @@
+
 function selectionSort(array) {
   let pointer = 0;
   while(pointer > array.length - 1) {
