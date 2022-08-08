@@ -4,6 +4,7 @@
 const HOME_TEAM_WON = 1;
 
 function tournamentWinner(competitions, results) {
+  //initializing a variable to 0 to keep track of the winner (quick optimization)
   let currentBestTeam = '';
   const scores = {[currentBestTeam]: 0};
 
