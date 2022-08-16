@@ -13,7 +13,7 @@ function smallestDifference(arrayOne, arrayTwo) {
       currentDifference = firstNum - secondNum;
       idxTwo++;
     } else if (firstNum < secondNum){
-      currentDiffernece = secondNum - firstNum;
+      currentDifference = secondNum - firstNum;
       idxOne++;
     } else {
       return [firstNum, secondNum]; 
