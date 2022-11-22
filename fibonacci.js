@@ -23,3 +23,4 @@ function getNthFib(n, memoize = {1: 0 ,2: 1}) {
     return memoize[n];
   }
 }
+
