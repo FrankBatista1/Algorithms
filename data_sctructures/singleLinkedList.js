@@ -74,23 +74,52 @@ class SingleLinkedList {
     return node;
   }
   set(val, index) {
-    const nodeFound = this.get(index)
+    const nodeFound = this.get(index);
     if (nodeFound){
       nodeFound.val = val;
-      return true
+      return true;
     }
     return false;
   }
   insert(val, index){
-    
+    const nodePre = this.get(index - 1);
+    const newNode = new Node(val);
+    if (index === 0){
+      newNode.next = this.head;
+      this.head = newNode;
+      this.length++;
+      return true;
+    } 
+    if (!nodePre) return false;
+    const nodeAft = nodePre.next;
+    nodePre.next = newNode;
+    newNode.next = nodeAft;
+    this.length++;
+    return true;
   }
+  remove(index){
+    if (index === 0) !!this.shift();
+    if (index === this.length - 1) !!this.pop();
+    let prev = this.get(index - 1);
+    if (prev && prev.next){
+      let removed = prev.next;
+      prev.next = removed.next;
+      this.length--;
+      return removed;
+    }
+    return null;
+  }
+
 }
 
 let singleLinked = new SingleLinkedList();
 
 singleLinked.push(3)
 singleLinked.push(5)
+singleLinked.push(7)
+singleLinked.push(2)
+singleLinked.push(1)
 
-console.log(singleLinked.get(3))
+singleLinked.remove(5)
 
 console.log(util.inspect(singleLinked, false, null, true));
