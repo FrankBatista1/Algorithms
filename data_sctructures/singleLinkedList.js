@@ -46,50 +46,50 @@ class SingleLinkedList {
       current = current.next;
     }
   }
-  shift(){
-      if (!this.head) return null;
-      let removedHead = this.head;
-      this.head = this.head.next;
-      if (this.length = 1) this.tail = null;
-      this.length--;
-      return removedHead;
+  shift() {
+    if (!this.head) return null;
+    let removedHead = this.head;
+    this.head = this.head.next;
+    if ((this.length = 1)) this.tail = null;
+    this.length--;
+    return removedHead;
   }
   unshift(val) {
     const newHead = new Node(val);
     let currentHead = this.head;
     this.head = newHead;
-    if (this.length === 0) this.tail = newHead  
+    if (this.length === 0) this.tail = newHead;
     this.head.next = currentHead;
     this.length++;
     return this;
   }
-  get(index){
+  get(index) {
     if (index < 0 || index >= this.length) return null;
     let iterations = 0;
     let node = this.head;
-    while(iterations < index){
-      node = node.next
+    while (iterations < index) {
+      node = node.next;
       iterations++;
     }
     return node;
   }
   set(val, index) {
     const nodeFound = this.get(index);
-    if (nodeFound){
+    if (nodeFound) {
       nodeFound.val = val;
       return true;
     }
     return false;
   }
-  insert(val, index){
+  insert(val, index) {
     const nodePre = this.get(index - 1);
     const newNode = new Node(val);
-    if (index === 0){
+    if (index === 0) {
       newNode.next = this.head;
       this.head = newNode;
       this.length++;
       return true;
-    } 
+    }
     if (!nodePre) return false;
     const nodeAft = nodePre.next;
     nodePre.next = newNode;
@@ -97,11 +97,11 @@ class SingleLinkedList {
     this.length++;
     return true;
   }
-  remove(index){
+  remove(index) {
     if (index === 0) !!this.shift();
     if (index === this.length - 1) !!this.pop();
     let prev = this.get(index - 1);
-    if (prev && prev.next){
+    if (prev && prev.next) {
       let removed = prev.next;
       prev.next = removed.next;
       this.length--;
@@ -109,17 +109,18 @@ class SingleLinkedList {
     }
     return null;
   }
-
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null;
+    for (var i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
-
-let singleLinked = new SingleLinkedList();
-
-singleLinked.push(3)
-singleLinked.push(5)
-singleLinked.push(7)
-singleLinked.push(2)
-singleLinked.push(1)
-
-singleLinked.remove(5)
-
-console.log(util.inspect(singleLinked, false, null, true));
