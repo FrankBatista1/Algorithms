@@ -86,17 +86,37 @@ class DoblyLinkedList {
     }
     return node;
   }
-  set() {}
-  insert() {}
-  remove() {}
+  set(val, index) {
+    let nodeToReplace = this.get(index);
+    if (nodeToReplace) return (nodeToReplace.val = val);
+    return false;
+  }
+  insert(val, index) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    const newNode = new Node(val);
+    let postNode = this.get(index);
+    let preNode = postNode.prev;
+    newNode.next = postNode, newNode.prev = preNode;
+    postNode.prev = newNode, preNode.next = newNode;
+    this.length++;
+    return true;
+  }
+  remove(index) {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) return !!this.shift()
+    if (index === this.length - 1) return !!this.pop()
+    const nodeToRemove = this.get(index);
+    let previusNode = nodeToRemove.prev;
+    let postNode = nodeToRemove.next;
+    previusNode.next = postNode;
+    postNode.prev = previusNode;
+    this.length--;
+    return true;
+  }
 }
 
 const dobleLinked = new DoblyLinkedList();
-
-dobleLinked.push(3);
-dobleLinked.push(5);
-dobleLinked.push(7);
-dobleLinked.push(2);
-dobleLinked.push(1);
 
 console.log(util.inspect(dobleLinked, false, null, true));
