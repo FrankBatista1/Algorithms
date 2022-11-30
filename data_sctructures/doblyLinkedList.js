@@ -119,4 +119,6 @@ class DoblyLinkedList {
 
 const dobleLinked = new DoblyLinkedList();
 
-console.log(util.inspect(dobleLinked, false, null, true));
+
+
+
